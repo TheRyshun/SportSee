@@ -29,7 +29,7 @@ const CustomCursor: React.FC<CustomCursorProps> = ({ points, width }) => {
     <Rectangle
       fill="#000000"
       opacity={0.1}
-      x={points[1].x}
+      x={points[0]}
       width={width}
       height={288}
     />
