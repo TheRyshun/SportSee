@@ -6,7 +6,7 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import DashBoard from "../../pages/Dashboard";
 import { useParams } from "react-router-dom";
 
@@ -34,7 +34,6 @@ const Panel: React.FC = () => {
     },
   ];
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const isTablet = useMediaQuery("(max-width: 1024px)");
 
   const SideBarCard: React.FC<DataItem> = ({ id, source }) => {
@@ -156,7 +155,7 @@ const Panel: React.FC = () => {
                     marginTop: "32px",
                   }}
                 >
-                  <Link to="/user/12">
+                  <NavLink to="/user/12">
                     <Button
                       variant="text"
                       color="primary"
@@ -175,8 +174,8 @@ const Panel: React.FC = () => {
                     >
                       Karl : 12
                     </Button>
-                  </Link>
-                  <Link to="/user/18">
+                  </NavLink>
+                  <NavLink to="/user/18">
                     <Button
                       variant="text"
                       color="primary"
@@ -195,7 +194,7 @@ const Panel: React.FC = () => {
                     >
                       Cecilia : 18
                     </Button>
-                  </Link>
+                  </NavLink>
                 </Box>
               </Box>
             </Box>
