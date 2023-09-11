@@ -43,6 +43,7 @@ const Panel: React.FC = () => {
         sx={{
           paddingX: isTablet ? "16px" : "22px",
           paddingY: isTablet ? "12px" : "18px",
+          cursor: "pointer",
         }}
       >
         <img src={source} key={id} alt="" width={40} />
