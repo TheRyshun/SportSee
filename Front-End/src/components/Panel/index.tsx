@@ -6,7 +6,7 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import DashBoard from "../../pages/Dashboard";
 import { useParams } from "react-router-dom";
 
@@ -155,7 +155,7 @@ const Panel: React.FC = () => {
                     marginTop: "32px",
                   }}
                 >
-                  <NavLink to="/user/12">
+                  <Link to="/user/12">
                     <Button
                       variant="text"
                       color="primary"
@@ -174,8 +174,8 @@ const Panel: React.FC = () => {
                     >
                       Karl : 12
                     </Button>
-                  </NavLink>
-                  <NavLink to="/user/18">
+                  </Link>
+                  <Link to="/user/18">
                     <Button
                       variant="text"
                       color="primary"
@@ -194,7 +194,7 @@ const Panel: React.FC = () => {
                     >
                       Cecilia : 18
                     </Button>
-                  </NavLink>
+                  </Link>
                 </Box>
               </Box>
             </Box>
