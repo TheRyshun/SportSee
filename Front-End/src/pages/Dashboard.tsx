@@ -17,7 +17,7 @@ type UserData = {
   };
 };
 
-function DashBoard() {
+const DashBoard = () => {
   const { id } = useParams();
   const [userData, setUserData] = useState<UserData | null>(null);
 
