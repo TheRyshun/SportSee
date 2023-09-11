@@ -48,7 +48,7 @@ const ActivityUser = () => {
   let minCalories = 0;
   let maxCalories = 0;
 
-  if (userData && userData.data.sessions) {
+  if (userData) {
     // Extraction des poids (kilogrammes) de chaque session
     const kilos = userData.data.sessions.map((session) => session.kilogram);
 
