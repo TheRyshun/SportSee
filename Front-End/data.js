@@ -2,16 +2,16 @@ export const USER_MAIN_DATA = [
     {
         id: 12,
         userInfos: {
-            firstName: 'Karlio',
+            firstName: 'Karl',
             lastName: 'Dovineau',
             age: 31,
         },
-        todayScore: 0.77,
+        todayScore: 0.12,
         keyData: {
             calorieCount: 1930,
             proteinCount: 155,
             carbohydrateCount: 290,
-            lipidCount: 77
+            lipidCount: 50
         }
     },
     {
@@ -38,7 +38,7 @@ export const USER_ACTIVITY = [
             {
                 day: '2020-07-01',
                 kilogram: 80,
-                calories: 500
+                calories: 240
             },
             {
                 day: '2020-07-02',
@@ -137,11 +137,11 @@ export const USER_AVERAGE_SESSIONS = [
             },
             {
                 day: 5,
-                sessionLength: 20
+                sessionLength: 0
             },
             {
                 day: 6,
-                sessionLength: 30
+                sessionLength: 0
             },
             {
                 day: 7,
@@ -198,7 +198,7 @@ export const USER_PERFORMANCE = [
         },
         data: [
             {
-                value: 200,
+                value: 80,
                 kind: 1
             },
             {
@@ -261,4 +261,3 @@ export const USER_PERFORMANCE = [
         ]
     }
 ]
-
