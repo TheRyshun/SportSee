@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Box, Typography } from "@mui/material";
 import isScreenSmall from "../../isScreenSmall";
+import { APIMODEMOCK } from "../../App";
+import { MockGET_User_Activity } from "../../getMock";
 
 type UserData = {
   data: {
@@ -20,11 +22,20 @@ const ActivityUser = () => {
   const [userData, setUserData] = useState<UserData | null>(null);
 
   useEffect(() => {
-    // Check if id exists before making the API call
     if (id) {
-      getUserActivity(id).then((data: UserData) => {
-        setUserData(data);
-      });
+      if (APIMODEMOCK) {
+        const userId = parseInt(id);
+        const MockuserData = MockGET_User_Activity(userId);
+        if (MockuserData) {
+          setUserData(MockuserData);
+        } else {
+          console.log("Utilisateur non trouvé (ActivityUser)");
+        }
+      } else {
+        getUserActivity(id).then((data) => {
+          setUserData(data);
+        });
+      }
     }
   }, [id]);
 

@@ -1,7 +1,7 @@
 import Typography from "@mui/material/Typography";
 import Toolbar from "@mui/material/Toolbar";
 import { Box, useMediaQuery } from "@mui/material";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const header = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -31,11 +31,11 @@ const header = () => {
             marginRight: isTablet ? "20px" : "92px",
           }}
         >
-          <Link to={"/"} style={{ textDecoration: "none", color: "white" }}>
+          <NavLink to={"/"} style={{ textDecoration: "none", color: "white" }}>
             <Typography variant="h5" sx={{ cursor: "pointer" }}>
               Accueil
             </Typography>
-          </Link>
+          </NavLink>
 
           <Typography variant="h5" sx={{ cursor: "pointer" }}>
             Profil

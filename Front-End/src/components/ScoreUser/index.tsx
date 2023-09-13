@@ -4,6 +4,8 @@ import { RadialBar, RadialBarChart, PolarAngleAxis } from "recharts";
 import { getUserData } from "../../api";
 import { Box, Typography } from "@mui/material";
 import isScreenSmall from "../../isScreenSmall";
+import { MockGET_UserMainDAta } from "../../getMock";
+import { APIMODEMOCK } from "../../App";
 
 type UserData = {
   data: {
@@ -18,12 +20,20 @@ const ScoreUser = () => {
   const [userData, setUserData] = useState<UserData | null>(null);
 
   useEffect(() => {
-    // Check if id exists before making the API call
     if (id) {
-      getUserData(id).then((data: UserData) => {
-        setUserData(data);
-        console.log(data);
-      });
+      if (APIMODEMOCK) {
+        const userId = parseInt(id);
+        const MockuserData = MockGET_UserMainDAta(userId);
+        if (MockuserData) {
+          setUserData(MockuserData);
+        } else {
+          console.log("Utilisateur non trouvé (ScoreUser)");
+        }
+      } else {
+        getUserData(id).then((data) => {
+          setUserData(data);          
+        });
+      }
     }
   }, [id]);
 

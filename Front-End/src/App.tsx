@@ -4,8 +4,10 @@ import Sidebar from './components/Panel';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from './pages/Home';
 
+ 
 const App = () => {
 
+  
   return (
     <Router>
     <Header />
@@ -16,5 +18,8 @@ const App = () => {
     </Router>
   )
 }
+
+// Mode specific Mock or Call API Axios
+export const APIMODEMOCK = true;
 
 export default App;

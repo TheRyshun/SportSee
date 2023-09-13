@@ -10,6 +10,8 @@ import {
 } from "recharts";
 import { getUserPerf } from "../../api";
 import { Box } from "@mui/material";
+import { APIMODEMOCK } from "../../App";
+import { MockGET_User_Performance } from "../../getMock";
 
 const PerformanceUser = () => {
   
@@ -30,13 +32,23 @@ const PerformanceUser = () => {
   const [userData, setUserData] = useState<UserData | null>(null);
 
   useEffect(() => {
-    // Check if id exists before making the API call
     if (id) {
-      getUserPerf(id).then((data: UserData) => {
-        setUserData(data);
-      });
+      if (APIMODEMOCK) {
+        const userId = parseInt(id);
+        const MockuserData = MockGET_User_Performance(userId);
+        if (MockuserData) {
+          setUserData(MockuserData);
+        } else {
+          console.log("Utilisateur non trouvé.");
+        }
+      } else {
+        getUserPerf(id).then((data) => {
+          setUserData(data);          
+        });
+      }
     }
   }, [id]);
+
 
 
 /**

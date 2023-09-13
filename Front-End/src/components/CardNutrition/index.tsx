@@ -3,10 +3,10 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getUserData } from "../../api";
 import isScreenSmall from "../../isScreenSmall";
-
+import { MockGET_UserMainDAta } from "../../getMock";
+import { APIMODEMOCK } from "../../App";
 
 const CardNutrition = () => {
-
   interface UserData {
     data: {
       keyData: {
@@ -17,18 +17,29 @@ const CardNutrition = () => {
       };
     };
   }
-  
+
   const { id } = useParams();
   const [userData, setUserData] = useState<UserData | null>(null);
 
+
   useEffect(() => {
     if (id) {
-      getUserData(id).then((data) => {
-        setUserData(data);
-      });
+      if (APIMODEMOCK) {
+        const userId = parseInt(id);
+        const MockuserData = MockGET_UserMainDAta(userId);
+        if (MockuserData) {
+          setUserData(MockuserData);
+        } else {
+          console.log("Utilisateur non trouvé (Cardnutrition)");
+        }
+      } else {
+        getUserData(id).then((data) => {
+          setUserData(data);
+          
+        });
+      }
     }
   }, [id]);
-
 
   interface DataItem {
     id: string;
@@ -78,7 +89,7 @@ const CardNutrition = () => {
           paddingY: isScreenSmall() ? "16px" : "0px",
 
           display: "flex",
-          justifyContent:"space-evenly",
+          justifyContent: "space-evenly",
           alignItems: "center",
           borderRadius: "12px",
           gap: "16px",
@@ -109,11 +120,17 @@ const CardNutrition = () => {
   return (
     <>
       {Data.map((item) => (
-        <Card key={item.id} source={item.source} quantity={item.quantity} valeur={item.valeur} type={item.type} id={item.id} />
+        <Card
+          key={item.id}
+          source={item.source}
+          quantity={item.quantity}
+          valeur={item.valeur}
+          type={item.type}
+          id={item.id}
+        />
       ))}
     </>
   );
-  
 };
 
 export default CardNutrition;

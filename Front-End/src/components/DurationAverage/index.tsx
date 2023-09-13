@@ -12,6 +12,8 @@ import {
 } from "recharts";
 import { Box, Typography } from "@mui/material";
 import isScreenSmall from "../../isScreenSmall";
+import { APIMODEMOCK } from "../../App";
+import { MockGET_User_Average_Sessions } from "../../getMock";
 
 const formatDayOfWeek = (day: number) => {
   const daysOfWeek = ["L", "M", "M", "J", "V", "S", "D"];
@@ -29,7 +31,7 @@ const CustomCursor: React.FC<CustomCursorProps> = ({ points, width }) => {
     <Rectangle
       fill="#000000"
       opacity={0.1}
-      x={points[0]}
+      x={points[1].x}
       width={width}
       height={288}
     />
@@ -50,11 +52,20 @@ const DurationAverage = () => {
   const [userData, setUserData] = useState<UserData | null>(null);
 
   useEffect(() => {
-    // Check if id exists before making the API call
     if (id) {
-      getUserAverageSession(id).then((data: UserData) => {
-        setUserData(data);
-      });
+      if (APIMODEMOCK) {
+        const userId = parseInt(id);
+        const MockuserData = MockGET_User_Average_Sessions(userId);
+        if (MockuserData) {
+          setUserData(MockuserData);
+        } else {
+          console.log("Utilisateur non trouvé (ScoreUser)");
+        }
+      } else {
+        getUserAverageSession(id).then((data) => {
+          setUserData(data);          
+        });
+      }
     }
   }, [id]);
 

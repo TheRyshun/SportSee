@@ -8,9 +8,11 @@ import ScoreUser from "../components/ScoreUser";
 import PerformanceUser from "../components/PerformanceUser";
 import DurationAverage from "../components/DurationAverage";
 import isScreenSmall from "../isScreenSmall";
+import { MockGET_UserMainDAta } from "../getMock";
+import { APIMODEMOCK } from "../App";
 
 type UserData = {
-  data: {
+  data : {
     userInfos: {
       firstName: string;
     };
@@ -21,12 +23,22 @@ const DashBoard = () => {
   const { id } = useParams();
   const [userData, setUserData] = useState<UserData | null>(null);
 
+
   useEffect(() => {
-    // Check if id exists before making the API call
     if (id) {
-      getUserData(id).then((data: UserData) => {
-        setUserData(data);
-      });
+      if (APIMODEMOCK) {
+        const userId = parseInt(id);
+        const MockuserData = MockGET_UserMainDAta(userId);
+        if (MockuserData) {
+          setUserData(MockuserData);
+        } else {
+          console.log("Utilisateur non trouvé (Dashboard)");
+        }
+      } else {
+        getUserData(id).then((data) => {
+          setUserData(data);
+        });
+      }
     }
   }, [id]);
 
